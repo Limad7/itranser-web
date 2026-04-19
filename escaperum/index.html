@@ -108,6 +108,54 @@
     .game-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
     .game-card p { color: var(--muted); font-size: 0.8rem; }
 
+    /* Showcase with perspective */
+    .showcase {
+      padding: 4rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .showcase h2 {
+      text-align: center; font-size: 2rem; margin-bottom: 3rem;
+    }
+    .showcase-row {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 5rem;
+    }
+    .showcase-row.reverse { flex-direction: row-reverse; }
+    .showcase-text { flex: 1; }
+    .showcase-text .g-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .showcase-text h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .showcase-text p { color: var(--muted); line-height: 1.7; }
+    .showcase-img {
+      flex: 1;
+      max-width: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 60px rgba(124,58,237,0.15);
+      border: 1px solid rgba(255,255,255,0.12);
+      transform: perspective(1500px) rotateY(-60deg) rotateX(5deg);
+      transition: transform 0.6s ease-out, box-shadow 0.4s;
+    }
+    .showcase-img:hover,
+    .showcase-img.straight {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 40px rgba(124,58,237,0.1);
+      transform: perspective(1500px) rotateY(0deg) rotateX(0deg);
+    }
+    .showcase-img img {
+      width: 100%; display: block;
+    }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .showcase-row, .showcase-row.reverse { flex-direction: column; text-align: center; }
+      .showcase-img { max-width: 280px; margin: 0 auto; }
+    }
+
     /* CTA */
     .cta {
       padding: 6rem 2rem;
@@ -204,11 +252,88 @@
   </div>
 </section>
 
+<section class="showcase">
+  <h2>Así se ve la fiesta</h2>
+
+  <div class="showcase-row reveal">
+    <div class="showcase-text">
+      <div class="g-emoji">⚡</div>
+      <h3>Turbo Beber</h3>
+      <p>Ronda rápida de "bebe" y "pasa". Sin pausa, sin piedad. ¡El modo más frenético para arrancar la noche!</p>
+    </div>
+    <div class="showcase-img">
+      <img src="screenshots/glupglup-1.jpg" alt="Turbo Beber" loading="lazy">
+    </div>
+  </div>
+
+  <div class="showcase-row reverse reveal">
+    <div class="showcase-text">
+      <div class="g-emoji">🤫</div>
+      <h3>Yo Nunca & Verdad o Reto</h3>
+      <p>Confesiones que no esperabas y retos que no creías aceptar. El modo clásico, reinventado.</p>
+    </div>
+    <div class="showcase-img">
+      <img src="screenshots/glupglup-2.jpg" alt="Yo Nunca" loading="lazy">
+    </div>
+  </div>
+
+  <div class="showcase-row reveal">
+    <div class="showcase-text">
+      <div class="g-emoji">💑</div>
+      <h3>Modo Pareja</h3>
+      <p>Pensado para dos. Retos íntimos y preguntas atrevidas para conectar de otra forma.</p>
+    </div>
+    <div class="showcase-img">
+      <img src="screenshots/glupglup-3.jpg" alt="Modo Pareja" loading="lazy">
+    </div>
+  </div>
+
+  <div class="showcase-row reverse reveal">
+    <div class="showcase-text">
+      <div class="g-emoji">🎡</div>
+      <h3>Ruleta & Abusón</h3>
+      <p>Aleatorio y sin piedad. La ruleta decide quién bebe, y el Abusón pone las reglas.</p>
+    </div>
+    <div class="showcase-img">
+      <img src="screenshots/glupglup-4.jpg" alt="Ruleta" loading="lazy">
+    </div>
+  </div>
+
+  <div class="showcase-row reveal">
+    <div class="showcase-text">
+      <div class="g-emoji">🕵️</div>
+      <h3>Impostor & ¿Quién es más probable?</h3>
+      <p>Señala, sospecha y descubre al traidor entre vosotros. La diversión está garantizada.</p>
+    </div>
+    <div class="showcase-img">
+      <img src="screenshots/glupglup-5.jpg" alt="Impostor" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <section class="cta">
   <h2>¿Lista la fiesta?</h2>
   <p>Descarga Glup-Glup y que empiece la diversión</p>
   <a href="https://onelink.to/btetzg" class="download">⬇ Descargar Ahora</a>
 </section>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Perspective straight-on-scroll
+const tiltObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('straight'); tiltObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.showcase-img').forEach(img => tiltObserver.observe(img));
+</script>
 
 <footer>
   <p>Glup-Glup por <a href="../">Itranser</a> — Informática de Transportes y Servicios, S.A.U.</p>
