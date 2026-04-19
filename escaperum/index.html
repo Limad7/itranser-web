@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glup-Glup — 8 Juegos para Beber y Fiestas</title>
+  <style>
+    :root {
+      --purple: #7C3AED;
+      --purple-dark: #4C1D95;
+      --pink: #EC4899;
+      --amber: #F59E0B;
+      --bg: #0A0A1A;
+      --card: #13132A;
+      --text: #F0E8FF;
+      --muted: #9890B8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,10,26,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(124,58,237,0.2);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    nav .logo {
+      font-size: 1.5rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    nav a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    nav a:hover { color: #fff; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 40%, rgba(124,58,237,0.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 30% 70%, rgba(236,72,153,0.1) 0%, transparent 50%);
+    }
+    .hero .emoji { font-size: 5rem; margin-bottom: 1.5rem; }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), var(--pink), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .hero .tagline {
+      font-size: 1.3rem; color: var(--muted);
+      max-width: 500px; margin-bottom: 2.5rem;
+    }
+    .hero .download {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff; text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 16px; font-weight: 700; font-size: 1.1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero .download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(124,58,237,0.4);
+    }
+    .hero .platforms {
+      margin-top: 1.5rem;
+      color: var(--muted); font-size: 0.9rem;
+    }
+
+    /* Games */
+    .games {
+      padding: 6rem 2rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .games h2 {
+      text-align: center; font-size: 2rem; margin-bottom: 3rem;
+    }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .game-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124,58,237,0.3);
+    }
+    .game-card .g-emoji { font-size: 2rem; margin-bottom: 0.75rem; }
+    .game-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .game-card p { color: var(--muted); font-size: 0.8rem; }
+
+    /* CTA */
+    .cta {
+      padding: 6rem 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 50%, rgba(236,72,153,0.1) 0%, transparent 60%);
+    }
+    .cta h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .cta p { color: var(--muted); margin-bottom: 2rem; }
+    .cta .download {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, var(--pink), var(--amber));
+      color: #fff; text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 16px; font-weight: 700; font-size: 1.1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .cta .download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(236,72,153,0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--purple); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .games-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">GLUP-GLUP</div>
+  <a href="../">← Itranser</a>
+</nav>
+
+<section class="hero">
+  <div class="emoji">🍻</div>
+  <h1>Glup-Glup</h1>
+  <p class="tagline">8 juegos para beber y fiestas en una sola app. ¡La diversión está garantizada!</p>
+  <a href="https://onelink.to/btetzg" class="download">⬇ Descargar Gratis</a>
+  <p class="platforms">Disponible en Android e iOS</p>
+</section>
+
+<section class="games">
+  <h2>8 Modos de Juego</h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <div class="g-emoji">⚡</div>
+      <h3>Turbo Beber</h3>
+      <p>Rápido y directo</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">🤫</div>
+      <h3>Yo Nunca</h3>
+      <p>Confesiones salvajes</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">💑</div>
+      <h3>Pareja</h3>
+      <p>Para dos</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">🎡</div>
+      <h3>Ruleta</h3>
+      <p>Aleatorio y loco</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">🔥</div>
+      <h3>Verdad o Reto</h3>
+      <p>El clásico intenso</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">😈</div>
+      <h3>Abusón</h3>
+      <p>El más atrevido</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">🤔</div>
+      <h3>¿Quién es más probable?</h3>
+      <p>Señala al culpable</p>
+    </div>
+    <div class="game-card">
+      <div class="g-emoji">🕵️</div>
+      <h3>Impostor</h3>
+      <p>Descubre al traidor</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Lista la fiesta?</h2>
+  <p>Descarga Glup-Glup y que empiece la diversión</p>
+  <a href="https://onelink.to/btetzg" class="download">⬇ Descargar Ahora</a>
+</section>
+
+<footer>
+  <p>Glup-Glup por <a href="../">Itranser</a> — Informática de Transportes y Servicios, S.A.U.</p>
+</footer>
+
+</body>
+</html>
