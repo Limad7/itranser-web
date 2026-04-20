@@ -427,10 +427,21 @@
     footer {
       text-align: center;
       padding: 3rem 2rem;
+      margin-top: 4rem;
       border-top: 1px solid var(--card-border);
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      background: rgba(10, 18, 30, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
+    footer p { opacity: 0.8; }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #fff; }
 
     @media (max-width: 768px) {
       nav { padding: 0.8rem 1.2rem; }
@@ -626,7 +637,7 @@
 
 <footer>
   <p>© 2026 Informática de Transportes y Servicios, S.A.U. — Todos los derechos reservados.</p>
-  <p><a href="/politica-privacidad.html">Política de Privacidad</a></p>
+  <p style="margin-top:0.5rem;"><a href="/politica-privacidad.html">Política de Privacidad</a> · <a href="/aviso-legal.html">Aviso legal</a></p>
 </footer>
 
 <script>
