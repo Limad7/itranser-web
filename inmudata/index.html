@@ -351,8 +351,27 @@ footer{background:var(--blue-dark);color:rgba(255,255,255,.6);padding:40px 24px;
 </section>
 
 <footer>
-  <p>&copy; 2026 Inmudata. Todos los derechos reservados.</p>
+  <p>&copy; 2026 Inmudata — un producto de Itranser. Todos los derechos reservados.</p>
+  <p style="margin-top:8px;font-size:.8rem">
+    <a href="legal.html" style="color:rgba(255,255,255,.6);text-decoration:underline">Aviso Legal</a>
+    &nbsp;·&nbsp;
+    <a href="privacy.html" style="color:rgba(255,255,255,.6);text-decoration:underline">Política de Privacidad</a>
+    &nbsp;·&nbsp;
+    <a href="cookies.html" style="color:rgba(255,255,255,.6);text-decoration:underline">Política de Cookies</a>
+  </p>
 </footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--blue-dark);color:#fff;padding:16px 24px;z-index:9999;box-shadow:0 -2px 12px rgba(0,0,0,.3)">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <p style="font-size:.85rem;margin:0;flex:1;min-width:240px">🍪 Utilizamos cookies técnicas para el correcto funcionamiento del sitio. Puedes consultar nuestra <a href="cookies.html" style="color:#93c5fd;text-decoration:underline">Política de Cookies</a>.</p>
+    <button onclick="acceptCookies()" style="background:#3b82f6;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.9rem;font-weight:600;white-space:nowrap">Aceptar</button>
+  </div>
+</div>
+<script>
+if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookie-banner').style.display='block'}
+function acceptCookies(){localStorage.setItem('cookies_accepted','true');document.getElementById('cookie-banner').style.display='none'}
+</script>
 
 <script>
 // Scroll-triggered reveal animations
